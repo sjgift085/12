@@ -1,19 +1,27 @@
 //board.c
 //shark game
 //2025.11.18.
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "board.h"
 
 #define N_BOARD						20
 #define BOARDSTATUS_OK		1
 #define BOARDSTATUS_NOK		0
+#define N_COINPOS					12
+#define MAX_COIN					4
 
-int board_initBoard(void);
 void board_printBoardStatus(void);
+int board_getBoardStatus(int pos);
 int board_getBoardCoin(int pos);
+int board_initBoard(void);
+
+/*
+int board_initBoard(void);
 int board_getSharkPosition(void);
 int board_stepShark(void);
-void board_getBoardStatus(void);
+*/
 
 static int board_status[N_BOARD];
 static int board_coin[N_BOARD];
@@ -32,7 +40,46 @@ void board_printBoardStatus(void){
 			}
 			printf("|\n");
 			printf("======================================\n");
+
+		  printf("============ BOARD COIN ============\n");
+		  for(i=0; i<N_BOARD; i++){
+		 	 				printf("|%i", coinResult);
+		   }
+			 printf("|\n");
+			 printf("======================================\n");
+}
 								
+int board_getBoardStatus(int pos){
+		 return board_status[pos];
+}
 
+int board_getBoardCoin(int pos){
+		int coin = board_coin[pos];
+		board_coin[pos] = 0;
+		return coin;
+}
 
+int board_initBoard(void){
+		int i;
+		
+		for(i=0; i<N_BOARD; i++){
+						 board_status[i] = BOARDSTATUS_OK;
+						 board_coin[i] = 0;
+						 }
+	  
+	  for(i=0; i<N_COINPOS; i++){
+						 int flag_allocated = 0;
+						 do{
+						 		 int coinpos = rand() % N_BOARD;
+						     if (board_coin[coinpos] == 0){
+								 		board_coin[coinpos] = rand()%MAX_COIN + 1;
+								 		flag_allocated = 1;
+						     }
+								 }
+				 		 while(flag_allocated == 0);
+		 }
+	 
+						 
+		
+}
 

@@ -1,7 +1,7 @@
 [Project]
 FileName=week12.dev
 Name=week12
-UnitCount=1
+UnitCount=3
 Type=1
 Ver=1
 ObjFiles=
@@ -56,4 +56,24 @@ OriginalFilename=
 ProductName=
 ProductVersion=
 AutoIncBuildNr=0
+
+[Unit2]
+FileName=board.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit3]
+FileName=board.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
 
