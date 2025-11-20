@@ -21,11 +21,24 @@ int player_coin[N_PLAYER];
 int player_status[N_PLAYER];
 char player_statusString[3][MAXLENGTH] = {"LIVE", "DIE", "END"};
 
+int gameEnd(void){
+		int i;
+		int flag_end = 1;
+		
+		for(i=0; i<N_PLAYER; i++){
+			if(player_status[i] == PLAYERSTATUS_LIVE)
+			  flag_end = 0;
+		 }
+		return(flag_end);	
+}
+
 void checkDie(void){
+		 int i;
+		 
 		 for(i=0; i<N_PLAYER; i++){
-		 					if(board_getBoardStatus(player_position[i] == BOARDSTATUS_NOK){
-							 player_status[i] = PLAYERSTATUS_DIE;
-							 printf("So Sad! %s died at position %i\n", player_name[i], player_position[i]);
+		 					if(board_getBoardStatus(player_position[i]) == BOARDSTATUS_NOK){
+							  player_status[i] = PLAYERSTATUS_DIE;
+							  printf("So Sad! %s died at position %i\n", player_name[i], player_position[i]);
 		 					 }
 			}
 }
@@ -101,7 +114,7 @@ int main(int argc, char *argv[])
  		do{
 			 int die_result;
 			 
-			 if(plyaer_status[turn] != PLAYERSTATUS_LIVE){
+			 if(player_status[turn] != PLAYERSTATUS_LIVE){
 				  turn = (turn + 1) % N_PLAYER;
 				  continue;
 				} 
@@ -132,12 +145,12 @@ int main(int argc, char *argv[])
  		   turn = (turn + 1) % N_PLAYER;
  		   
  		   if(turn == 0){
- 				 int shark_pos = board_stepShark[]);
+ 				 int shark_pos = board_stepShark();
  				 printf("Shark moved to %i\n", shark_pos);
  				 checkDie();
    			 }
  		   cnt++;
-		} while(cnt < 5); //ending
+		} while(gameEnd() == 0); //ending
 		
  		//step 3 Finish game
  		
@@ -147,8 +160,7 @@ int main(int argc, char *argv[])
  		printf("==============================================\n");
  		printf("**********************************************\n");
  		printf("*           !! CONGRATULATION !!             *\n");
- 		printf("*            %s          *\n", player_name[turn]);
- 		printf("*               YOU WIN !!!!!                *\n");
+ 		printf("*                 THE  END                   *\n");
  		printf("**********************************************\n");
  		printf("==============================================\n\n\n");
   
