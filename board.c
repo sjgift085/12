@@ -43,7 +43,7 @@ void board_printBoardStatus(void){
 
 		  printf("============ BOARD COIN ============\n");
 		  for(i=0; i<N_BOARD; i++){
-		 	 				printf("|%i", coinResult);
+		 	 				printf("|%i", board_coin[i]);
 		   }
 			 printf("|\n");
 			 printf("======================================\n");
